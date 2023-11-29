@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\DashboardUserController;
 
@@ -29,3 +30,8 @@ Route::get('/connexionAssociation',[AssociationController::class,'login']);
 Route::post('/connexionAssociation',[AssociationController::class,'authenticate']);
 Route::get('/dashboardAssociation',[DashboardUserController::class,'create']);
 Route::post('/deconnexionAssociation', [AssociationController::class,'logout']);
+
+//EVENEMENT
+Route::post('/insererEvenement',[AssociationController::class,'ajout_evenement']);
+Route::get('/listeEvenement',[EvenementController::class,'index']);
+Route::get('/detailEvenement/{id}',[EvenementController::class,'show']);

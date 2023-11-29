@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evenement;
 use App\Models\Association;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -47,7 +48,7 @@ class AssociationController extends Controller
         if($request->file('logo')){
             $file= $request->file('logo');
             $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('/images'), $filename);
+            $file-> move(public_path('images'), $filename);
             $association['logo']= $filename;
         }
         if ($association->save()) {
@@ -89,6 +90,43 @@ class AssociationController extends Controller
         auth()->logout();
         return redirect('/connexionAssociation');
     }
+
+    //AJOUT EVENEMENT
+    public function ajout_evenement(Request $request){
+        $request->validate([
+            'libelle'=>'required|string',
+            'date_limite_inscription'=>'required|date',
+            'description'=>'required|string',
+            'image'=>'required|image|max:5000',
+            'lieu'=>'required|string',
+            'est_cloturer_ou_pas'=>'required',
+            'date_evenement'=>'required|date',
+        ]);
+
+        $evenement = new Evenement();
+        $evenement->libelle=$request->libelle;
+        $evenement->date_limite_inscription=$request->date_limite_inscription;
+        $evenement->description=$request->description;
+        $evenement->lieu=$request->lieu;
+        $evenement->est_cloturer_ou_pas=$request->est_cloturer_ou_pas;
+        $evenement->date_evenement=$request->date_evenement;
+        $evenement->association_id=$request->association_id;
+        if($request->file('image')){
+            $file= $request->file('image');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('/images'), $filename);
+            $evenement['image']= $filename;
+        }
+        //$image=$request->file('image')->store('/images','public');
+
+        if ($evenement->save()) {
+            //return 'success';
+            return redirect('/listeEvenement');
+        }
+    }
+
+
+
 
     /**
      * Display the specified resource.
