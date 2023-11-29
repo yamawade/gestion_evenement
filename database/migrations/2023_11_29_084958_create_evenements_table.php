@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('image');
             $table->string('lieu');
-            $table->boolean('est_cloturer_ou_pas');
+            $table->enum('est_cloturer_ou_pas',['cloturer','pas cloturer'])->default('pas cloturer');
             $table->date('date_evenement');
             $table->foreignIdFor(Association::class)->constrained()->onDelete('cascade');
             $table->timestamps();

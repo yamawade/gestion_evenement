@@ -31,19 +31,18 @@ class AssociationController extends Controller
     public function store(Request $request)
     {
         $association= new Association();
-        // $request->validate([
-        //     'nom_association'=>'required|min:2|max:20 ',
-        //     'slogan_association'=>'required |min:2|max:20',
-        //     'logo'=>'required|image|max:1000',
-        //     'email'=>'required|email',
-        //     'password'=>'required',
-        //     'date_creation'=>'required|date',
-        // ]);
+        $request->validate([
+            'nom_association'=>'required|min:2|max:20 ',
+            'slogan_association'=>'required |min:2|max:20',
+            'logo'=>'required|image|max:5000',
+            'email'=>'required|email',
+            'password'=>'required',
+            'date_creation'=>'required|date',
+        ]);
         $association->nom_association=$request->nom_association;
         $association->slogan_association=$request->slogan_association;
         $association->email=$request->email;
         $association->date_creation=$request->date_creation;
-        $association->logo=$request->logo;
         $association->password=Hash::make($request->password);
         if($request->file('logo')){
             $file= $request->file('logo');
@@ -99,7 +98,6 @@ class AssociationController extends Controller
             'description'=>'required|string',
             'image'=>'required|image|max:5000',
             'lieu'=>'required|string',
-            'est_cloturer_ou_pas'=>'required',
             'date_evenement'=>'required|date',
         ]);
 
@@ -108,7 +106,6 @@ class AssociationController extends Controller
         $evenement->date_limite_inscription=$request->date_limite_inscription;
         $evenement->description=$request->description;
         $evenement->lieu=$request->lieu;
-        $evenement->est_cloturer_ou_pas=$request->est_cloturer_ou_pas;
         $evenement->date_evenement=$request->date_evenement;
         $evenement->association_id=$request->association_id;
         if($request->file('image')){

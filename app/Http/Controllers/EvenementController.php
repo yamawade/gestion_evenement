@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evenement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class EvenementController extends Controller
 {
@@ -44,24 +45,58 @@ class EvenementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $evenement = Evenement::find($id);
+        return view('association.modifierEvenement', compact('evenement'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'libelle'=>'required|string',
+            'date_limite_inscription'=>'required|date',
+            'description'=>'required|string',
+            'image'=>'required|image|max:5000',
+            'lieu'=>'required|string',
+            'date_evenement'=>'required|date',
+        ]);
+
+        $evenement = Evenement::find($id);
+        $evenement->libelle=$request->libelle;
+        $evenement->date_limite_inscription=$request->date_limite_inscription;
+        $evenement->description=$request->description;
+        $evenement->lieu=$request->lieu;
+        $evenement->est_cloturer_ou_pas=$request->est_cloturer_ou_pas;
+        $evenement->date_evenement=$request->date_evenement;
+        $evenement->association_id=$request->association_id;
+        if($request->file('image')){
+            $file= $request->file('image');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('/images'), $filename);
+            $evenement['image']= $filename;
+        }
+        $evenement->update();
+        $idevenement=$evenement->id;
+        return Redirect::route('detailEvenement',['id'=>$idevenement]);
+
+        // if ($evenement->update()) {
+
+        //     //return 'success';
+        //     return redirect('/listeEvenement');
+        // }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $evenement = Evenement::find($id);
+        $evenement->delete();
+        return redirect('/listeEvenement');
     }
 }

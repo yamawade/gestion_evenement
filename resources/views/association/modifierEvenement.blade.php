@@ -20,23 +20,28 @@
         @endforeach
     </ul>
     <div class="card offset-3 mt-4" style="width: 600px;">
-        <form action="/insererEvenement" method="post" enctype="multipart/form-data">
+        <form action="/modifEvenement/update/{{$evenement->id}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card-header text-center bg-primary text-white">
-               AJOUT EVENEMENT
+               MODIFIER EVENEMENT
             </div>
+           
             <div class="card-body">
                 <div class="form-group">
                     <label for="libelleEvenemnt" class="form-label mt-4">Libelle</label>
-                    <input type="text" class="form-control" id="libelleEvenemnt" name="libelle">
+                    <input type="text" class="form-control" id="libelleEvenemnt" name="libelle" value="{{$evenement->libelle}}">
                 </div>
                 <div class="form-group">
                     <label for="dateLimite" class="form-label mt-4">Date Limite Inscription</label>
-                    <input type="date" class="form-control" id="dateLimite" name="date_limite_inscription">
+                    <input type="date" class="form-control" id="dateLimite" name="date_limite_inscription" value="{{$evenement->date_limite_inscription}}">
                 </div>
                 <div class="form-group">
                     <label for="description" class="form-label mt-4">Description</label>
-                    <textarea class="form-control" id="description" name="description" placeholder="Description" ></textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="Description" >{{$evenement->description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label mt-4">Image actuelle</label><br>
+                    <img src="{{ asset('/images/' . $evenement->image) }}" alt="Image actuelle"  width="420px" height="205px">
                 </div>
                 <div class="form-group">
                     <label for="image" class="form-label mt-4">Image</label>
@@ -44,11 +49,15 @@
                 </div>
                 <div class="form-group">
                     <label for="lieuEvenement" class="form-label mt-4">Lieu</label>
-                    <input type="text" class="form-control" id="lieuEvenement" name="lieu">    
+                    <input type="text" class="form-control" id="lieuEvenement" name="lieu" value="{{$evenement->lieu}}">    
+                </div>
+                <div class="form-group mt-3">
+                    <label for="">Voulez-vous cloturer l'evenement?</label>
+                    <input type="checkbox" name="est_cloturer_ou_pas" id="" value="cloturer">
                 </div>
                 <div class="form-group">
                     <label for="dateEvenement" class="form-label mt-4">Date Evenement</label>
-                    <input type="date" class="form-control" id="dateEvenement" name="date_evenement">
+                    <input type="date" class="form-control" id="dateEvenement" name="date_evenement" value="{{$evenement->date_evenement}}">
                 </div>
                 <input type="hidden" name="association_id" value="{{auth()->guard('association')->user()->id}}">
                 <button type="submit" class="btn btn-primary btn-lg offset-5 mt-4 text-white">Soumettre</button>

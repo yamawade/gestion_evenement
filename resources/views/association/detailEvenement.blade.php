@@ -20,9 +20,9 @@
                 <p class="card-text">Lieu: {{ $evenement->lieu}}</p>
                 <p class="card-text">Est_cloturer_ou_pas: {{ $evenement->est_cloturer_ou_pas}}</p>
                 <p class="card-text">Date Evenement: {{ $evenement->date_evenement}}</p>
-                <a href="" class="btn btn-success">Modifier</a>
-                <a href="" class="btn btn-danger">supprimer</a>
-                <a href="" class="btn btn-info">Retour</a>
+                <a href="/modifEvenement/{{$evenement->id}}" class="btn btn-success">Modifier</a>
+                <a href="/supprimerEvenement/{{$evenement->id}}" class="btn btn-danger">supprimer</a>
+                <a href="/listeEvenement" class="btn btn-info">Retour</a>
             </div>
         </div>
     </div>

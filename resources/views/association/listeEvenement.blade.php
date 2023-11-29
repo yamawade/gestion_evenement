@@ -18,6 +18,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
+             <a href="/dashboardAssociation" class="btn btn-primary">Ajout Evenement</a>
                 <h2 class="offset-4">LISTES DES EVENEMENTS</h2>
             </div>
             <div class="card-body">

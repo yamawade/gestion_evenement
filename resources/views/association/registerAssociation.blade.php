@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="card offset-3 mt-4" style="width: 600px;">
-        <form action="/inscriptionAssociation" method="post">
+        <form action="/inscriptionAssociation" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card-header text-center bg-primary text-white">
                INSCRIPTION 

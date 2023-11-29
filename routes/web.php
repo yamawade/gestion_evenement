@@ -34,4 +34,7 @@ Route::post('/deconnexionAssociation', [AssociationController::class,'logout']);
 //EVENEMENT
 Route::post('/insererEvenement',[AssociationController::class,'ajout_evenement']);
 Route::get('/listeEvenement',[EvenementController::class,'index']);
-Route::get('/detailEvenement/{id}',[EvenementController::class,'show']);
+Route::get('/detailEvenement/{id}',[EvenementController::class,'show'])->name('detailEvenement');
+Route::get('/modifEvenement/{id}',[EvenementController::class,'edit']);
+Route::post('/modifEvenement/update/{id}',[EvenementController::class,'update']);
+Route::get('/supprimerEvenement/{id}',[EvenementController::class,'destroy']);
