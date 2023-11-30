@@ -67,8 +67,7 @@ class ReservationController extends Controller
     {
         $reservation->est_accepter_ou_pas='decliner';
         $reservation->save();
-        $idreservation=$reservation->id;
-        return Redirect::route('listeReservation',['id'=>$idreservation]);
+        return back();
         
     }
 
@@ -76,8 +75,7 @@ class ReservationController extends Controller
     {
         $reservation->est_accepter_ou_pas='accepter';
         $reservation->save();
-        $idreservation=$reservation->id;
-        return Redirect::route('listeReservation',['id'=>$idreservation]);
+        return back();
         
     }
 
