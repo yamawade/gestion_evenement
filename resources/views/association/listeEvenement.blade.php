@@ -32,21 +32,25 @@
                         <th>DATE EVENEMENT</th>
                         <th>ACTION</th>
                     </tr>
+                   
                     @foreach($evenements as $evenement)
-                        <tr>
-                            <td>{{$evenement->libelle}}</td>
-                            <td>{{$evenement->date_limite_inscription}}</td>
-                            <td>{{$evenement->description}}</td>
-                            <td>{{$evenement->image}}</td>
-                            <td>{{$evenement->lieu}}</td>
-                            <td>{{$evenement->date_evenement}}</td>
-                            <td>
-                                <!-- <a href="" class="btn btn-warning btn-sm">Modifier</a>
-                                <a href="" class="btn btn-danger btn-sm">Supprimer</a> -->
-                                <a href="/detailEvenement/{{$evenement->id}}" class="btn btn-secondary">Voir Détails</a>
-                            </td>
-                        </tr>
+                        @if($evenement->association->id ==auth()->guard('association')->user()->id)
+                            <tr>
+                                <td>{{$evenement->libelle}}</td>
+                                <td>{{$evenement->date_limite_inscription}}</td>
+                                <td>{{$evenement->description}}</td>
+                                <td>{{$evenement->image}}</td>
+                                <td>{{$evenement->lieu}}</td>
+                                <td>{{$evenement->date_evenement}}</td>
+                                <td>
+                                    <!-- <a href="" class="btn btn-warning btn-sm">Modifier</a>
+                                    <a href="" class="btn btn-danger btn-sm">Supprimer</a> -->
+                                    <a href="/detailEvenement/{{$evenement->id}}" class="btn btn-secondary">Voir Détails</a>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
+                    
                 </table>
             </div>
         </div>

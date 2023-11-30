@@ -74,21 +74,14 @@ class AssociationController extends Controller
             // return $user->nom_association;
             return redirect('/dashboardAssociation');
         }
-       
-        // if (auth()->guard('association')->attempt($credentials)) {
-        //     // Authentification réussie
-        //     //return redirect('/dashboardAssociation');
-        //     $nomAssos= auth()->user()->nom_association;
-        //     return $nomAssos;
-        // }
 
         // Authentification échouée
         return back()->withErrors('Email et/ou mot de passe incorrect !');
     }
 
     public function logout(){
-        auth()->logout();
-        return redirect('/connexionAssociation');
+        auth()->guard('association')->logout();
+        return redirect('/');
     }
 
     //AJOUT EVENEMENT
