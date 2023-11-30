@@ -53,7 +53,10 @@
                 </div>
                 <div class="form-group mt-3">
                     <label for="">Voulez-vous cloturer l'evenement?</label>
+                    <label for="">Oui</label>
                     <input type="checkbox" name="est_cloturer_ou_pas" id="" value="cloturer">
+                    <label for="">Non</label>
+                    <input type="checkbox" name="est_cloturer_ou_pas" id="" value="pas cloturer">
                 </div>
                 <div class="form-group">
                     <label for="dateEvenement" class="form-label mt-4">Date Evenement</label>

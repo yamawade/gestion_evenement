@@ -60,7 +60,7 @@ class EvenementController extends Controller
             'libelle'=>'required|string',
             'date_limite_inscription'=>'required|date',
             'description'=>'required|string',
-            'image'=>'required|image|max:5000',
+            'image'=>'image|max:5000',
             'lieu'=>'required|string',
             'date_evenement'=>'required|date',
         ]);
