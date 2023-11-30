@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evenement;
 use App\Models\Association;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -128,9 +129,10 @@ class AssociationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $reservations = Reservation::where('evenement_id',$id)->get();
+        return view('association.listeReservation',compact('reservations'));
     }
 
     /**

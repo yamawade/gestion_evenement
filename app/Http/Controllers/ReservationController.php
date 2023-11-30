@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Evenement;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ReservationController extends Controller
 {
@@ -62,9 +63,22 @@ class ReservationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Reservation $reservation,string $etat)
     {
-        //
+        $reservation->est_accepter_ou_pas='decliner';
+        $reservation->save();
+        $idreservation=$reservation->id;
+        return Redirect::route('listeReservation',['id'=>$idreservation]);
+        
+    }
+
+    public function updateReservation(Reservation $reservation,string $etat)
+    {
+        $reservation->est_accepter_ou_pas='accepter';
+        $reservation->save();
+        $idreservation=$reservation->id;
+        return Redirect::route('listeReservation',['id'=>$idreservation]);
+        
     }
 
     /**

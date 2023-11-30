@@ -19,6 +19,7 @@
         <li class="alert alert-danger">{{$error}}</li>
         @endforeach
     </ul>
+    <a href="/listeEvenement" class="btn btn-primary">Liste Evenement</a>
     <div class="card offset-3 mt-4" style="width: 600px;">
         <form action="/insererEvenement" method="post" enctype="multipart/form-data">
             @csrf

@@ -14,7 +14,7 @@
         <img src="{{ asset('/images/'.$evenement->image) }}" class="img-fluid rounded-start" alt="" style="height: 500px; width: 100%;">
         <div class="row">
             <div class="card-body">
-                <h5 class="card-title">Nom du Evenement: {{$evenement->nom}}</h5>
+                <h5 class="card-title">Nom de l'evenement: {{$evenement->libelle}}</h5>
                 <p class="card-text">Date Limite: {{$evenement->date_limite_inscription}}</p>
                 <p class="card-text">Description: {{ $evenement->description}}</p>
                 <p class="card-text">Lieu: {{ $evenement->lieu}}</p>
@@ -22,6 +22,7 @@
                 <p class="card-text">Date Evenement: {{ $evenement->date_evenement}}</p>
                 <a href="/modifEvenement/{{$evenement->id}}" class="btn btn-success">Modifier</a>
                 <a href="/supprimerEvenement/{{$evenement->id}}" class="btn btn-danger">supprimer</a>
+                <a href="/listeReservation/{{$evenement->id}}" class="btn btn-warning">Voir liste reservation</a>
                 <a href="/listeEvenement" class="btn btn-info">Retour</a>
             </div>
         </div>
