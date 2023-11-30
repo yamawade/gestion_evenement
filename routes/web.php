@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\AssociationController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\DashboardUserController;
 
 /*
@@ -16,7 +17,8 @@ use App\Http\Controllers\DashboardUserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',[ClientController::class,'login']);
+Route::get('/',[DashboardUserController::class,'show']);
+Route::get('/ConnexionClient',[ClientController::class,'login']);
 Route::post('/loginClient',[ClientController::class,'authenticate']);
 Route::get('/dashboardClient',[DashboardUserController::class,'index']);
 Route::post('/deconnexionUser', [ClientController::class,'logout']);
@@ -38,3 +40,7 @@ Route::get('/detailEvenement/{id}',[EvenementController::class,'show'])->name('d
 Route::get('/modifEvenement/{id}',[EvenementController::class,'edit']);
 Route::post('/modifEvenement/update/{id}',[EvenementController::class,'update']);
 Route::get('/supprimerEvenement/{id}',[EvenementController::class,'destroy']);
+
+//RESERVATION
+Route::get('/reservation/{id}',[ReservationController::class,'create']);
+Route::post('/reservation-traitement',[ReservationController::class,'store']);

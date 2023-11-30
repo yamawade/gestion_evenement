@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evenement;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -17,9 +19,10 @@ class ReservationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $evenement = Evenement::findOrFail($id);
+        return view('clients.reservation',compact('evenement'));
     }
 
     /**
@@ -27,7 +30,17 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre_place'=>'required|integer'
+        ]);
+        $reservation = new Reservation();
+        $reservation->nombre_place=$request->nombre_place;
+        $reservation->evenement_id=$request->evenement_id;
+        $reservation->user_id=$request->user_id;
+        $reservation->date_reservation=date('Y/m/d');
+        if($reservation->save()){
+            return redirect('/dashboardClient');
+        }
     }
 
     /**

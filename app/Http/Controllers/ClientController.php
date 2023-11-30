@@ -44,7 +44,7 @@ class ClientController extends Controller
         $user->save();
        // return 'good';
         if ($user->save()) {
-            return redirect('/');
+            return redirect('/ConnexionClient');
         }
     }
 

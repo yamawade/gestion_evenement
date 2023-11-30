@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Evenement;
 use Illuminate\Http\Request;
 
 class DashboardUserController extends Controller
@@ -11,7 +12,8 @@ class DashboardUserController extends Controller
      */
     public function index()
     {
-        return view('clients.dashboardClient');
+        $evenements= Evenement::all();
+        return view('clients.dashboardClient',compact('evenements'));
     }
 
     /**
@@ -33,9 +35,10 @@ class DashboardUserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $evenements= Evenement::all();
+        return view('welcome',compact('evenements'));
     }
 
     /**
