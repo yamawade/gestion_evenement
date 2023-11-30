@@ -28,6 +28,7 @@
                         <th>PRENOM CLIENT</th>
                         <th>DATE RESERVATION</th>
                         <th>NOMBRE PLACE</th>
+                        <th>NOM EVENEMENT</th>
                         <th>ACTION</th>
                     </tr>
                     @foreach($reservations as $reservation)
@@ -36,6 +37,7 @@
                             <td>{{$reservation->user->prenom}}</td>
                             <td>{{$reservation->date_reservation}}</td>
                             <td>{{$reservation->nombre_place}}</td>
+                            <td>{{$reservation->evenement->libelle}}</td>
                             <td>
                                 @if($reservation->est_accepter_ou_pas === 'accepter')
                                     <a href="/declinerReservation/{{$reservation->id}}/{{$reservation->est_accepter_ou_pas}}" class="btn btn-danger">Decliner la reservation</a>
