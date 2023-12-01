@@ -84,8 +84,12 @@ class ReservationController extends Controller
     public function updateReservation(Reservation $reservation,string $etat)
     {
         $reservation->est_accepter_ou_pas='accepter';
-        $reservation->save();
-        return back();
+        if($reservation->save()){
+            $userMail=User::find($reservation->user_id);
+            $userMail->notify(new SendMailUserReservation());
+            return back();
+        }
+        
         
     }
 
