@@ -7,6 +7,14 @@
     <title>GES_EVENEMENT</title>
 </head>
 <body>
+    @if(count($errors)>0)
+		<div class="alert alert-dismissible alert-danger">
+		<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		@foreach($errors->all() as $error)
+		<strong>Oh snap!</strong> <a href="#" class="alert-link">{{$error}}.
+		@endforeach
+		</div>  
+	@endif
     <div class="card offset-3 mt-4 " style="width: 600px;">
         <form action="/connexionAssociation" method="post">
             @csrf
@@ -15,8 +23,8 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label for="emailUser" class="form-label mt-4">Email</label>
-                    <input type="text" class="form-control" id="emailUser" name="email">    
+                    <label for="email" class="form-label mt-4">Email</label>
+                    <input type="text" class="form-control" id="email" name="email">    
                 </div>
                 <div class="form-group">
                     <label for="password" class="form-label mt-4">Mot De Passe</label>
